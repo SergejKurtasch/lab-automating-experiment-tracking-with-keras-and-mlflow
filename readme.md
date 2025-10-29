@@ -60,7 +60,7 @@ Access the UI at `http://localhost:5000` to view logged experiments and compare 
 
 ### Resource
 
-Feel free to check the official MLFlow docuemntion & tutorial at [MLflow Tracking APIs](https://mlflow.org/docs/3.1.3/ml/tracking/tracking-api/)
+Feel free to check the official MLFlow documentation & tutorial at [MLflow Tracking APIs](https://mlflow.org/docs/3.1.3/ml/tracking/tracking-api/)
 
 ### Deliverables
 
