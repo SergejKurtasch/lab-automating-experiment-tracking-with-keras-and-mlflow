@@ -1,6 +1,28 @@
-'''Trains and evaluate a simple MLP
-on the Reuters newswire topic classification task with MLflow tracking.
-'''
+"""
+Reuters Classification with MLflow Tracking
+
+This script implements a basic Keras MLP model for Reuters topic classification
+with MLflow experiment tracking. This is the main script from the lab assignment.
+
+USAGE:
+    1. Make sure MLflow is installed: pip install mlflow tensorflow keras
+    2. Run this script: python reuters_mlflow.py
+    3. Start MLflow UI to view results: mlflow ui
+    4. Open browser: http://localhost:5000
+
+WHAT IT DOES:
+    - Trains a simple MLP on Reuters news classification dataset
+    - Automatically logs metrics, parameters, and artifacts to MLflow
+    - Uses mlflow.tensorflow.autolog() for automatic tracking
+
+MODIFYING PARAMETERS:
+    Edit the parameters at the bottom of the file (max_words, batch_size, epochs, learning_rate)
+    or call train_model() with custom parameters.
+
+SEE ALSO:
+    - enhanced_reuters_mlflow.py: Enhanced version with more features
+    - run_experiments.py: Run multiple experiments with different hyperparameters
+"""
 from __future__ import print_function
 
 import numpy as np
@@ -203,13 +225,28 @@ def _train_model_internal(max_words=500, batch_size=64, epochs=2, learning_rate=
     return model, history, test_loss, test_accuracy
 
 if __name__ == "__main__":
-    # Default parameters (optimized for speed)
-    max_words = 500
-    batch_size = 64
-    epochs = 2
-    learning_rate = 0.001
+    """
+    Main execution block.
     
-    print("Starting Reuters classification experiment with MLflow tracking...")
+    To modify hyperparameters, change these values below:
+    """
+    # Default parameters (optimized for speed)
+    max_words = 500        # Vocabulary size
+    batch_size = 64        # Training batch size
+    epochs = 2             # Number of training epochs
+    learning_rate = 0.001  # Learning rate for optimizer
+    
+    print("="*60)
+    print("REUTERS CLASSIFICATION WITH MLFLOW TRACKING")
+    print("="*60)
+    print(f"Parameters:")
+    print(f"  - Max words: {max_words}")
+    print(f"  - Batch size: {batch_size}")
+    print(f"  - Epochs: {epochs}")
+    print(f"  - Learning rate: {learning_rate}")
+    print("="*60)
+    print("\nStarting training...\n")
+    
     model, history, test_loss, test_accuracy = train_model(
         max_words=max_words,
         batch_size=batch_size,
@@ -217,7 +254,14 @@ if __name__ == "__main__":
         learning_rate=learning_rate
     )
     
-    print(f"Experiment completed! Test accuracy: {test_accuracy:.4f}")
+    print("\n" + "="*60)
+    print("TRAINING COMPLETED")
+    print("="*60)
+    print(f"Test accuracy: {test_accuracy:.4f}")
+    print(f"Test loss: {test_loss:.4f}")
     print(f"\n✅ Experiment saved to MLflow!")
-    print(f"👉 Check your MLflow UI at http://localhost:5000")
-    print(f"   Look for experiment: 'reuters_classification'")
+    print(f"\n👉 Next steps:")
+    print(f"   1. Start MLflow UI: mlflow ui")
+    print(f"   2. Open browser: http://localhost:5000")
+    print(f"   3. Look for experiment: 'reuters_classification'")
+    print("="*60)

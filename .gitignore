@@ -71,3 +71,9 @@ logs/
 *.temp
 .cache/
 
+# Test scripts (kept locally for testing, but not in repository)
+test_mlflow.py
+quick_test_enhanced.py
+ultra_quick_test.py
+comprehensive_experiments.py
+

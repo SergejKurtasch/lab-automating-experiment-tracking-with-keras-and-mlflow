@@ -1,6 +1,32 @@
-'''Enhanced Reuters Classification with MLflow Tracking
-Based on MLflow Complete Guide patterns for comprehensive experiment tracking.
-'''
+"""
+Enhanced Reuters Classification with MLflow Tracking
+
+This script provides an enhanced version with comprehensive MLflow tracking,
+experiment comparison, and better logging patterns. Recommended for advanced usage.
+
+USAGE:
+    1. Make sure MLflow is installed: pip install mlflow tensorflow keras
+    2. Run this script: python enhanced_reuters_mlflow.py
+    3. Start MLflow UI: mlflow ui
+    4. Open browser: http://localhost:5000
+
+WHAT IT DOES:
+    - Trains two experiments (baseline and optimized configurations)
+    - Compares experiment results automatically
+    - Logs models, comprehensive metrics, and detailed parameters
+    - Provides comparison tables and analysis
+
+DIFFERENCES FROM reuters_mlflow.py:
+    - More detailed parameter logging
+    - Experiment comparison functionality
+    - Model artifact logging
+    - Best metrics tracking
+    - Better organized experiment structure
+
+SEE ALSO:
+    - reuters_mlflow.py: Basic version (simpler, recommended to start here)
+    - run_experiments.py: Run multiple experiments with different hyperparameters
+"""
 from __future__ import print_function
 
 import numpy as np
@@ -290,8 +316,16 @@ def compare_experiments(experiment1, experiment2):
     }
 
 if __name__ == "__main__":
-    print("Starting Reuters Classification Experiments with MLflow Tracking...")
+    """
+    Main execution block.
+    
+    This script runs two experiments (baseline and optimized) and compares them.
+    """
+    print("="*60)
+    print("ENHANCED REUTERS CLASSIFICATION WITH MLFLOW")
     print("Based on MLflow Complete Guide patterns")
+    print("="*60)
+    print("\nThis will run two experiments and compare them:\n")
     
     # Initialize MLflow client
     client = MlflowClient()
@@ -342,4 +376,11 @@ if __name__ == "__main__":
     print(f"🏃 View Experiment 1: http://localhost:5000/#/experiments/1/runs/{experiment1['run_id']}")
     print(f"🏃 View Experiment 2: http://localhost:5000/#/experiments/1/runs/{experiment2['run_id']}")
     
-    print(f"\n✅ All experiments completed successfully!")
+    print(f"\n" + "="*60)
+    print("ALL EXPERIMENTS COMPLETED SUCCESSFULLY!")
+    print("="*60)
+    print(f"\n👉 Next steps:")
+    print(f"   1. Start MLflow UI: mlflow ui")
+    print(f"   2. Open browser: http://localhost:5000")
+    print(f"   3. Look for experiment: 'reuters-classification-comparison'")
+    print("="*60)

@@ -1,6 +1,43 @@
-'''Script to run multiple experiments with different hyperparameters
-for Reuters classification with MLflow tracking.
-'''
+"""
+Run Multiple Experiments with Different Hyperparameters
+
+This script runs multiple experiments with different hyperparameter combinations
+to find the best configuration. It uses the basic train_model() function from
+reuters_mlflow.py and runs it with various parameter settings.
+
+USAGE:
+    1. Make sure you have run reuters_mlflow.py at least once (to ensure dependencies)
+    2. Install dependencies: pip install mlflow tensorflow keras
+    3. Run this script: python run_experiments.py
+    4. Start MLflow UI: mlflow ui
+    5. Open browser: http://localhost:5000
+
+WHAT IT DOES:
+    - Runs 7 different experiments with varying hyperparameters:
+      * Baseline configuration
+      * Larger/smaller vocabulary
+      * Different batch sizes
+      * More epochs
+      * Different learning rates
+    - Compares all experiments and shows results ranked by test accuracy
+    - All results are logged to MLflow for easy comparison
+
+EXPERIMENT CONFIGURATIONS:
+    - baseline: Standard configuration
+    - larger_vocabulary: More words in vocabulary
+    - smaller_batch: Smaller batch size
+    - larger_batch: Larger batch size
+    - more_epochs: More training epochs
+    - higher_lr: Higher learning rate
+    - lower_lr: Lower learning rate
+
+TO MODIFY EXPERIMENTS:
+    Edit the 'experiments' list in the run_experiments() function.
+
+SEE ALSO:
+    - reuters_mlflow.py: Basic single experiment script
+    - enhanced_reuters_mlflow.py: Enhanced version with comparison features
+"""
 import mlflow
 
 # Connect to existing MLflow UI using the same backend store (SQLite)
@@ -142,10 +179,27 @@ def run_experiments():
     return results
 
 if __name__ == "__main__":
+    """
+    Main execution block.
+    
+    This will run all experiments defined in run_experiments() function.
+    """
+    print("="*60)
+    print("RUNNING MULTIPLE EXPERIMENTS")
+    print("="*60)
+    print("\nThis script will run 7 different experiments with various hyperparameters.")
+    print("This may take a while depending on your hardware...\n")
+    
     results = run_experiments()
     
     print(f"\n{'='*60}")
-    print("All experiments completed!")
-    print("To view results in MLflow UI, run: mlflow ui")
-    print("Then open: http://localhost:5000")
-    print(f"{'='*60}")
+    print("ALL EXPERIMENTS COMPLETED!")
+    print("="*60)
+    print(f"\n✅ Total experiments run: {len(results)}")
+    print(f"📊 Best accuracy: {max(r['test_accuracy'] for r in results):.4f}")
+    print(f"\n👉 Next steps:")
+    print(f"   1. Start MLflow UI: mlflow ui")
+    print(f"   2. Open browser: http://localhost:5000")
+    print(f"   3. Look for experiment: 'reuters_classification'")
+    print(f"   4. Compare experiments using the MLflow UI interface")
+    print("="*60)
